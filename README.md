@@ -1,5 +1,3 @@
-# PRODIGY_FS_02
-
 # Employee Record Management System
 
 A web application that allows users to add, view, update, and delete employee records in real-time. Built with **Node.js, Express.js, WebSocket, and MongoDB**, this system ensures smooth data handling and dynamic updates.
