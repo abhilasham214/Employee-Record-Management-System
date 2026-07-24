@@ -1,88 +1,103 @@
 # Employee Record Management System
 
-A real-time full-stack web application for managing employee records, featuring user authentication, role management, live WebSocket updates, and MongoDB persistence.
+A full-stack web application for real-time employee record administration. Built on Node.js, Express, MongoDB, and WebSockets, the system delivers real-time multi-client synchronization for CRUD operations and authenticated user management.
 
----
+## Architecture and Data Flow
 
-## Features
+`	ext
++----------------+      HTTP / WebSocket       +---------------------+
+|                | <-------------------------> |                     |
+|  Browser View  |                             |  Express.js Server  |
+|  (EJS Views)   | --- WebSocket Broadcast --> |     (app.js)        |
+|                |                             |                     |
++----------------+                             +---------------------+
+                                                          |
+                                           +--------------+--------------+
+                                           |                             |
+                                           v                             v
+                                 +------------------+          +-------------------+
+                                 |  Authentication  |          |  MongoDB Storage  |
+                                 |   & Hash Logic   |          | (Employee & User) |
+                                 +------------------+          +-------------------+
+`
 
-- ** User Authentication**: Secure login and registration with hashed password storage.
-- ** Real-Time Synchronization**: Live updates powered by WebSocket (`ws`) so changes reflect immediately across all connected client dashboards.
-- ** Complete CRUD Operations**: Add, view, update, and delete employee records dynamically.
-- ** Responsive Interface**: Dynamic EJS templates rendered cleanly with styled forms and user dashboards.
+## Key Features
 
----
+- User Authentication: Secure user registration and login endpoints utilizing cryptographic hashing.
+- Real-Time WebSocket Synchronization: Instant multi-client updates broadcasting CRUD changes without manual page refreshes.
+- Employee CRUD Pipeline: Endpoints to create, read, update, and delete employee records.
+- Server-Side Templating: Dynamic EJS views rendered for authentication, dashboards, and employee management forms.
+- Data Persistence: MongoDB connection via Mongoose models for structured schema validation.
 
-##  Project Structure
+## Repository Structure
 
-```text
+`	ext
 Employee-Record-Management-System/
-├── app.js                 # Primary Express server setup & WebSocket initialization
-├── employeeRoutes.js       # Express routing endpoints for Employee CRUD actions
-├── Employee.js            # Mongoose Schema for Employee records
-├── User.js                # Mongoose Schema for User authentication
-├── hash.js                # Password hashing utility functions
-├── login.ejs              # Login page view
-├── register.ejs           # User registration view
-├── dashboard.ejs          # Main dashboard view displaying employee records
-├── employee-form.ejs      # Form view for adding/editing employee records
-├── style.html             # UI styling file / template stylesheet
-├── package.json           # Node.js project manifest & dependencies
+├── app.js                 # Server entry point & WebSocket initialization
+├── employeeRoutes.js       # Express router for employee endpoints
+├── Employee.js            # Mongoose Schema for Employee entities
+├── User.js                # Mongoose Schema for User entities
+├── hash.js                # Cryptographic hashing module
+├── login.ejs              # Authentication login template
+├── register.ejs           # User registration template
+├── dashboard.ejs          # Dashboard template displaying records
+├── employee-form.ejs      # Form template for record management
+├── style.html             # Interface styling definitions
+├── package.json           # Application dependencies and scripts
 └── README.md              # Project documentation
-```
+`
 
----
+## Tech Stack
 
-##  Tech Stack
+- Backend: Node.js, Express.js
+- Database: MongoDB, Mongoose ORM
+- Real-Time Communication: WebSocket (ws)
+- Templating Engine: EJS
+- Client Layer: HTML5, CSS3, JavaScript
 
-- **Backend Framework**: Node.js & Express.js
-- **Database**: MongoDB & Mongoose ORM
-- **Real-Time Communication**: WebSocket (`ws`)
-- **Template Engine**: EJS (Embedded JavaScript)
-- **Styling**: HTML5, CSS3
+## Local Setup and Installation
 
----
+### Prerequisites
 
-##  Getting Started
+- Node.js (v14.0.0 or higher)
+- npm (v6.0.0 or higher)
+- MongoDB instance running locally on port 27017 or via a remote connection string.
 
-### 1. Clone the repository
-```bash
-git clone https://github.com/abhilasham214/Employee-Record-Management-System.git
-cd Employee-Record-Management-System
-```
+### Setup Instructions
 
-### 2. Install dependencies
-```bash
-npm install
-```
+1. Clone the repository:
+   `ash
+   git clone https://github.com/abhilasham214/Employee-Record-Management-System.git
+   cd Employee-Record-Management-System
+   `
 
-### 3. Configure Environment Variables
-Create a `.env` file in the root directory:
-```env
-PORT=3000
-MONGODB_URI=mongodb://localhost:27017/employee_db
-SESSION_SECRET=your_secret_key
-```
+2. Install Node.js dependencies:
+   `ash
+   npm install
+   `
 
-### 4. Start the Application
-```bash
-# Start server
-node app.js
-```
-Open your browser and navigate to `http://localhost:3000`.
+3. Create a .env configuration file in the project root:
+   `nv
+   PORT=3000
+   MONGODB_URI=mongodb://localhost:27017/employee_management
+   SESSION_SECRET=your_production_secret_key
+   `
 
----
+4. Start the application server:
+   `ash
+   node app.js
+   `
 
-##  API & WebSocket Events
+5. Access the application in your browser at http://localhost:3000.
 
-- `POST /register`: Registers a new user account.
-- `POST /login`: Authenticates user credentials.
-- `GET /employees`: Retrieves employee list.
-- `POST /employees`: Adds a new employee record and broadcasts a WebSocket update event to all connected clients.
-- `DELETE /employees/:id`: Deletes an employee record and triggers live broadcast.
+## API Endpoints
 
----
+- POST /register: Registers a new administrative user.
+- POST /login: Authenticates credentials and opens a session.
+- GET /employees: Fetches all employee records.
+- POST /employees: Creates an employee record and triggers a WebSocket broadcast.
+- DELETE /employees/:id: Removes an employee record and updates active clients.
 
-##  License
+## License
 
-This project is licensed under the [MIT License](LICENSE).
+This software is licensed under standard open-source terms.
