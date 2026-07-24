@@ -1,19 +1,19 @@
-# 🏢 Employee Record Management System
+# Employee Record Management System
 
 A real-time full-stack web application for managing employee records, featuring user authentication, role management, live WebSocket updates, and MongoDB persistence.
 
 ---
 
-## 📌 Features
+## Features
 
-- **🔐 User Authentication**: Secure login and registration with hashed password storage.
-- **⚡ Real-Time Synchronization**: Live updates powered by WebSocket (`ws`) so changes reflect immediately across all connected client dashboards.
-- **📋 Complete CRUD Operations**: Add, view, update, and delete employee records dynamically.
-- **🖥️ Responsive Interface**: Dynamic EJS templates rendered cleanly with styled forms and user dashboards.
+- ** User Authentication**: Secure login and registration with hashed password storage.
+- ** Real-Time Synchronization**: Live updates powered by WebSocket (`ws`) so changes reflect immediately across all connected client dashboards.
+- ** Complete CRUD Operations**: Add, view, update, and delete employee records dynamically.
+- ** Responsive Interface**: Dynamic EJS templates rendered cleanly with styled forms and user dashboards.
 
 ---
 
-## 🛠️ Project Structure
+##  Project Structure
 
 ```text
 Employee-Record-Management-System/
@@ -33,7 +33,7 @@ Employee-Record-Management-System/
 
 ---
 
-## ⚙️ Tech Stack
+##  Tech Stack
 
 - **Backend Framework**: Node.js & Express.js
 - **Database**: MongoDB & Mongoose ORM
@@ -43,7 +43,7 @@ Employee-Record-Management-System/
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### 1. Clone the repository
 ```bash
@@ -73,7 +73,7 @@ Open your browser and navigate to `http://localhost:3000`.
 
 ---
 
-## 🔌 API & WebSocket Events
+##  API & WebSocket Events
 
 - `POST /register`: Registers a new user account.
 - `POST /login`: Authenticates user credentials.
@@ -83,6 +83,6 @@ Open your browser and navigate to `http://localhost:3000`.
 
 ---
 
-## 🛡️ License
+##  License
 
 This project is licensed under the [MIT License](LICENSE).
